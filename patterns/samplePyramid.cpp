@@ -18,6 +18,10 @@ int main() {
     7 8 9
    */
 
+  /* 
+    Time and Space Complexity 
+   */
+
     int number = 0;
    for( int i = 0; i < 4 ; i++) {
 
