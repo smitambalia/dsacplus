@@ -9,6 +9,7 @@ bool checkSortingOfArray(int arr[], int size, int index)
     if (index == size -1)
         return true;
 
+    //  we are solving once and rest are being taken care of by recursion
      if (arr[index + 1] > arr[index])
          return checkSortingOfArray(arr, size, index + 1);
      else
