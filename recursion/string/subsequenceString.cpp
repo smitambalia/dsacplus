@@ -2,12 +2,16 @@
 #include <string>
 #include <vector>
 using namespace std;
-
-/* 
-    display subsequence string
-    We will apply , Include and Exclude pattern for this problem
-
+/**
+ * Recursion Class - 3 
+ * Type - String with recursion
+ * Pattern - include , exclude 
  */
+/**
+ *  Display subsequence string
+ *  We will apply , Include and Exclude pattern for this problem
+ */
+
 void findSubsequenceString(string str, string outputString, int index,vector<string>& ans) {
 
     // base case 
