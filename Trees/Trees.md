@@ -16,7 +16,11 @@
     - Left Sub-Tree, Right Sub-Tree, Current Node
  - Levelorder Traversal 
 
-# Height of tree 
+# Height/Diameter of tree 
     - 
 
 # Level of tree 
+   - 
+
+# Balanced tree 
+   - At each node = ABS (height of left tree - height of right tree) <= 1
