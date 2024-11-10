@@ -51,6 +51,22 @@ Node* reverseLinkedList(Node *&head) {
 
 }
 
+Node* reverseLinkedListWithoutRecursion(Node *&head) {
+
+    Node *prev = NULL;
+    Node *current = head;
+
+    // repeate the process until
+    while(current != NULL) {
+        Node *forward = current->next;
+        current->next = prev;
+        prev = current;
+        current = forward;
+    }
+
+    return prev;
+
+}
 void print(Node *head)
 {
 
@@ -73,7 +89,8 @@ int main()
     insertAtLast(30, head);
     print(head);
 
-    head = reverseLinkedList(head);
+    // head = reverseLinkedList(head);
+    head = reverseLinkedListWithoutRecursion(head);
     print(head);
 
     return 0;
