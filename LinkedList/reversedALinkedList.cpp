@@ -28,6 +28,29 @@ void insertAtLast(int value, Node *&head)
     head = newNode;
 }
 
+Node* reverseLinkedList(Node *&prev, Node *&current) {
+
+    // return head when current is null
+    if(current == NULL) return prev;
+
+    // initialise the forware pointer  
+    Node *forward = current->next;
+
+    current->next = prev;
+    prev = current;
+    current = forward;
+    return reverseLinkedList(prev,current);
+}
+
+
+Node* reverseLinkedList(Node *&head) {
+    Node *prev = NULL;
+    Node *current = head;
+
+    return reverseLinkedList(prev,current);
+
+}
+
 void print(Node *head)
 {
 
@@ -44,14 +67,14 @@ void print(Node *head)
 
 int main()
 {
-
     Node *head = NULL;
-    
     insertAtLast(10, head);
     insertAtLast(20, head);
     insertAtLast(30, head);
-
-
     print(head);
+
+    head = reverseLinkedList(head);
+    print(head);
+
     return 0;
 }
