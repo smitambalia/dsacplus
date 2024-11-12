@@ -105,23 +105,41 @@ bool search(int target, Node *&head)
     return false;
 }
 
+int findTheMiddleValue(Node *&head) {
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast != NULL) {
+        fast = fast->next;
+        if( fast != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+    }
+    return slow->data;
+}
+
+
 int main()
 {
 
     Node *head = NULL;
     Node *tail = NULL;
 
-    insertAtTail(10, head, tail);
     insertAtTail(20, head, tail);
+    insertAtTail(10, head, tail);
     insertAtTail(30, head, tail);
     insertAtHead(35, head, tail);
+    // insertAtTail(40, head, tail);
+
 
     // display the nodes
 
     print(head);
-
-    insertAtPotion(55, head, tail, 10);
-    print(head);
+    int middleValue = findTheMiddleValue(head);
+    cout << middleValue << " " << endl;
+    // insertAtPotion(55, head, tail, 10);
+    // print(head);
 
     return 0;
 }

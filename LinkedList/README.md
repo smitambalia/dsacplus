@@ -6,3 +6,7 @@
     - forward points to next of current of the node
     - solve one case , rest will be taken care by recursion
 
+## Find the middle node of a linked-list
+    - slow and fast variable approch 
+    - slow increases one step and fast variable increases two steps
+
