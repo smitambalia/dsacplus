@@ -10,3 +10,8 @@
     - slow and fast variable approch 
     - slow increases one step and fast variable increases two steps
 
+## Find the palindrom from a linked-list
+    - find the middle of a linked list
+    - break the linked list into two parts 
+    - reverse the 2nd part of a linked list
+    - return true when both parth matches otherwise false
