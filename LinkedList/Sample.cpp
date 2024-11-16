@@ -190,6 +190,31 @@ bool isPalindrom(Node* &head) {
    
 }
 
+
+
+void removeDuplicateFromLinkedListWithoutRecursion(Node* &head) {
+
+    if(head-> next == NULL) return;
+
+    Node* prev = head;
+    Node* temp = head->next;
+
+
+    while (temp != NULL) {
+        if(temp->data == prev->data) {
+            prev->next = temp->next;
+            temp->next = NULL;
+            delete temp;
+        }
+        else {
+            prev = prev->next;
+        }
+        temp = prev->next;
+    }
+
+
+}
+
 int main()
 {
 
@@ -197,21 +222,24 @@ int main()
     Node *tail = NULL;
 
     insertAtTail(1, head, tail);
+    insertAtTail(1, head, tail);
+    insertAtTail(2, head, tail);
     insertAtTail(2, head, tail);
     insertAtTail(3, head, tail);
-    insertAtTail(2, head, tail);
-    insertAtTail(1, head, tail);
+    print(head);
+    removeDuplicateFromLinkedListWithoutRecursion(head);
+    print(head);
 
+    // bool linkeListIsPalindrom = isPalindrom(head);
+    // if(linkeListIsPalindrom) {
+    //     cout << "LinkedList is palindrom!!" << endl ;
+    // }
+    // else {
+    //     cout << "LinkedList is not palindrom!!" << endl ;
 
-    bool linkeListIsPalindrom = isPalindrom(head);
-    if(linkeListIsPalindrom) {
-        cout << "LinkedList is palindrom!!" << endl ;
-    }
-    else {
-        cout << "LinkedList is not palindrom!!" << endl ;
-
-    }
+    // }
     
-    // find the palindrom 
+
+
     return 0;
 }
