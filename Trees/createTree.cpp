@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class Node
@@ -15,10 +16,9 @@ public:
         left = NULL;
         right = NULL;
     }
-
 };
 
-Node * createTree()
+Node *createTree()
 {
     cout << "Enter a value for tree" << endl;
     int value;
@@ -45,25 +45,28 @@ Node * createTree()
     return node;
 }
 
-void inOrderTraversal(Node* root) {
+void inOrderTraversal(Node *root)
+{
     // Current , Left , Right
     // check if node is empty
-    if(root == NULL) return;
+    if (root == NULL)
+        return;
 
-    // printing all the nodes which comes left side of the tree 
+    // printing all the nodes which comes left side of the tree
     inOrderTraversal(root->left);
 
     cout << root->val << " ";
 
-    // printing all the nodes which comes right side of the tree 
+    // printing all the nodes which comes right side of the tree
     inOrderTraversal(root->right);
-
 }
 
-//  preorder traversal 
-void preOrderTraveral(Node* root) {
+//  preorder traversal
+void preOrderTraveral(Node *root)
+{
 
-    if(root == NULL) return;
+    if (root == NULL)
+        return;
 
     cout << root->val;
 
@@ -72,14 +75,47 @@ void preOrderTraveral(Node* root) {
     preOrderTraveral(root->right);
 }
 
-// postorder traversal 
-void portOrderTraversal(Node* root) {
+// postorder traversal
+void postOrderTraversal(Node *root)
+{
 
-    if(root == NULL) return;
+    if (root == NULL)
+        return;
 
     postOrderTraversal(root->right);
     postOrderTraversal(root->left);
     cout << root->val;
+}
+
+void levelOrderTraversal(Node* root) {
+    // return when root is empty
+    if(root == NULL) {
+        return;
+    }
+    // initialise the queue with type of Node*
+    queue<Node*> q;
+    // add root note to queue
+    q.push(root);
+    q.push(NULL);
+
+    while(!q.empty()) {
+
+        Node* front = q.front();
+        q.pop();
+        
+        if(front == NULL) {
+            cout << endl ;
+            if(!q.empty()) q.push(NULL);
+        }
+        else {
+            cout << front->val << " ";
+
+            if(front->left !=NULL) q.push(root->left);
+            if(front->right != NULL) q.push(root->right);
+        }
+        
+
+    }
 
 }
 
@@ -92,7 +128,8 @@ int main()
 
     // cout << "root -> " << root->val;
 
-    inOrderTraversal(root);
+    // inOrderTraversal(root);
+    levelOrderTraversal(root);
     return 0;
 }
 
