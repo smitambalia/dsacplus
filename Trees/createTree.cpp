@@ -118,8 +118,24 @@ void levelOrderTraversal(Node* root) {
     }
 
 }
+/**
+ * Find depth of a tree
+ */
+int depthOfATree(Node *head) {
+    Node* temp = head;
+    if(temp == NULL) return 0;
+   
+    //    find the depth of a left most tree
+    int leftTreeDepth = depthOfATree(temp->left);
 
+    //    find the depth of a right most tree
+    int rightTreeDepth = depthOfATree(temp->right);
 
+    int maxDepthOfATree = max(leftTreeDepth,rightTreeDepth) + 1;
+
+    return maxDepthOfATree;
+
+}
 int main()
 {
     Node *root;
@@ -129,7 +145,8 @@ int main()
     // cout << "root -> " << root->val;
 
     // inOrderTraversal(root);
-    levelOrderTraversal(root);
+    // levelOrderTraversal(root);
+    cout << depthOfATree(root) << endl ;
     return 0;
 }
 
