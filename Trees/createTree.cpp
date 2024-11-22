@@ -136,6 +136,30 @@ int depthOfATree(Node *head) {
     return maxDepthOfATree;
 
 }
+
+int heighOfTree(Node* root) {
+
+    if(root == NULL) return 0;
+
+    int leftHeight = heighOfTree(root->left);
+
+    int rightHeight = heighOfTree(root->right);
+
+    int height = max(leftHeight,rightHeight) + 1;
+
+    return height;
+}
+int diaMeterOfTree(Node* root) {
+    if(root == NULL) return 0;
+
+    int left = heighOfTree(root->left);
+    int right = heighOfTree(root->right);
+    cout << "left ->" << left << endl;
+    cout << "right ->" << right << endl;
+    return left + right;
+
+}
+
 int main()
 {
     Node *root;
@@ -146,7 +170,9 @@ int main()
 
     // inOrderTraversal(root);
     // levelOrderTraversal(root);
-    cout << depthOfATree(root) << endl ;
+    // cout << depthOfATree(root) << endl ;
+    cout << diaMeterOfTree(root) << endl ;
+
     return 0;
 }
 
