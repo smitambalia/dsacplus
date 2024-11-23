@@ -1,5 +1,7 @@
 #include <iostream>
 #include <queue>
+#include <cstdlib>
+
 using namespace std;
 
 class Node
@@ -160,6 +162,22 @@ int diaMeterOfTree(Node* root) {
 
 }
 
+bool isTreeBalanced(Node* root) {
+
+    if(root == NULL) return true;
+
+    int left = heighOfTree(root->left);
+
+    int right = heighOfTree(root->right);
+
+    bool absDiff = (abs(left-right) <= 1);
+
+    bool leftTree = isTreeBalanced(root->left);
+    bool rightTree = isTreeBalanced(root->right);
+
+    return (leftTree && absDiff ** rightTree);
+}
+
 int main()
 {
     Node *root;
@@ -171,7 +189,14 @@ int main()
     // inOrderTraversal(root);
     // levelOrderTraversal(root);
     // cout << depthOfATree(root) << endl ;
-    cout << diaMeterOfTree(root) << endl ;
+    // cout << diaMeterOfTree(root) << endl ;
+
+    if(isTreeBalanced(root)) {
+        cout << "Tree is balanced" << endl ;
+    }
+    else {
+        cout << "Tree is not balanced" << endl ;
+    }
 
     return 0;
 }
