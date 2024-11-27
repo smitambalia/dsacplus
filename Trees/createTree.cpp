@@ -213,7 +213,30 @@ Node *lowestCommonAncestor(Node *root, Node *p, Node *q)
         return root;
     }
 }
+bool solvePathSum(TreeNode* root, int targetSum,int sum) {
+        if(root == NULL) return false;
 
+        sum = sum + root->val;
+
+        if(root->left == NULL && root->right == NULL) {
+            if(sum == targetSum) return true;
+            else return false;
+        }
+
+        bool leftTree = solvePathSum(root->left,targetSum,sum);
+        bool rightTree = solvePathSum(root->right,targetSum,sum);
+
+        return leftTree || rightTree;
+
+    }
+
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        
+        int sum = 0;
+        bool isPathSum = solvePathSum(root,targetSum,sum);
+        return isPathSum;
+    }
+    
 int main()
 {
     Node *root;
