@@ -213,30 +213,71 @@ Node *lowestCommonAncestor(Node *root, Node *p, Node *q)
         return root;
     }
 }
-bool solvePathSum(TreeNode* root, int targetSum,int sum) {
-        if(root == NULL) return false;
+bool solvePathSum(TreeNode *root, int targetSum, int sum)
+{
+    if (root == NULL)
+        return false;
 
-        sum = sum + root->val;
+    sum = sum + root->val;
 
-        if(root->left == NULL && root->right == NULL) {
-            if(sum == targetSum) return true;
-            else return false;
+    if (root->left == NULL && root->right == NULL)
+    {
+        if (sum == targetSum)
+            return true;
+        else
+            return false;
+    }
+
+    bool leftTree = solvePathSum(root->left, targetSum, sum);
+    bool rightTree = solvePathSum(root->right, targetSum, sum);
+
+    return leftTree || rightTree;
+}
+
+bool hasPathSum(TreeNode *root, int targetSum)
+{
+
+    int sum = 0;
+    bool isPathSum = solvePathSum(root, targetSum, sum);
+    return isPathSum;
+}
+/**
+ * Path sum 2 problem from LeetCode
+ * Problem #113
+ */
+void solvePathSum(TreeNode *root, int targetSum, int sum, vector<int> &path, vector<vector<int>> &paths)
+{
+    if (root == NULL)
+        return;
+
+    sum = sum + root->val;
+    path.push_back(root->val);
+
+    if (root->left == NULL && root->right == NULL)
+    {
+        if (sum == targetSum)
+        {
+            paths.push_back(path);
         }
-
-        bool leftTree = solvePathSum(root->left,targetSum,sum);
-        bool rightTree = solvePathSum(root->right,targetSum,sum);
-
-        return leftTree || rightTree;
-
+        path.pop_back();
+        return;
     }
 
-    bool hasPathSum(TreeNode* root, int targetSum) {
-        
-        int sum = 0;
-        bool isPathSum = solvePathSum(root,targetSum,sum);
-        return isPathSum;
-    }
-    
+    solvePathSum(root->left, targetSum, sum, path, paths);
+    solvePathSum(root->right, targetSum, sum, path, paths);
+    path.pop_back();
+}
+vector<vector<int>> pathSum(TreeNode *root, int targetSum)
+{
+    vector<vector<int>> paths;
+    int sum = 0;
+    vector<int> path;
+
+    solvePathSum(root, targetSum, sum, path, paths);
+
+    return paths;
+}
+
 int main()
 {
     Node *root;
